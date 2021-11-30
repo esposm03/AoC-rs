@@ -7,4 +7,3 @@ publish = false
 [dependencies]
 clap = "3.0.0-beta.5"
 nom = "7"
-itertools = "0.10.1"
