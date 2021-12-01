@@ -6,15 +6,16 @@ use std::io::Read;
 
 mod solutions_2019;
 mod solutions_2020;
+mod solutions_2021;
 
 #[derive(Parser)]
 #[clap(
-    version = "2020",
+    version = "2021",
     author = "esposm03 <36164633+esposm03@users.noreply.github.com>"
 )]
 struct Invocation {
-    /// The AoC year (default: 2020)
-    #[clap(short, long, default_value = "2020")]
+    /// The AoC year (default: 2021)
+    #[clap(short, long, default_value = "2021")]
     year: usize,
     /// The problem number
     problem: usize,
@@ -130,6 +131,7 @@ fn main() {
         match invocation.year {
             2019 => solutions_2019::SOLUTIONS[number](&input),
             2020 => solutions_2020::SOLUTIONS[number](&input),
+            2021 => solutions_2021::SOLUTIONS[number](&input),
             _ => "Invalid year :(".into(),
         }
     );
