@@ -1,13 +1,13 @@
 use crate::SolutionType;
 
 pub fn day2(input: &str) -> SolutionType {
-    get_index_at(&vec![0], 0);
+    get_index_at(&[0], 0);
 
     let mut memory = input
         .split(',')
         .filter(|i| *i != "\n")
         .map(|i| i.replace("\n", ""))
-        .map(|i| i.parse::<usize>().expect(&format!("Can't parse {}", i)))
+        .map(|i| i.parse::<usize>().unwrap())
         .collect::<Vec<_>>();
     let mut position = 0usize;
 
@@ -28,7 +28,7 @@ pub fn day2(input: &str) -> SolutionType {
     }
 
     fn add(mem: &mut Vec<usize>, index: usize) -> Option<()> {
-        let sum = get_index_at(&mem, index + 1) + get_index_at(&mem, index + 2);
+        let sum = get_index_at(mem, index + 1) + get_index_at(mem, index + 2);
         let pos: usize = *mem.get(index + 3).unwrap();
         mem[pos] = sum;
 
@@ -36,27 +36,27 @@ pub fn day2(input: &str) -> SolutionType {
     }
 
     fn mul(mem: &mut Vec<usize>, index: usize) -> Option<()> {
-        let mul = get_index_at(&mem, index + 1) * get_index_at(&mem, index + 2);
+        let mul = get_index_at(mem, index + 1) * get_index_at(mem, index + 2);
         let pos: usize = *mem.get(index + 3).unwrap();
         mem[pos] = mul;
 
         Some(())
     }
 
-    fn get_index_at(mem: &Vec<usize>, position: usize) -> usize {
+    fn get_index_at(mem: &[usize], position: usize) -> usize {
         let index = *mem.get(position).unwrap();
         *mem.get(index).unwrap()
     }
 }
 
 pub fn day2_part2(input: &str) -> SolutionType {
-    get_index_at(&vec![0], 0);
+    get_index_at(&[0], 0);
 
     let memory = input
         .split(',')
         .filter(|i| *i != "\n")
         .map(|i| i.replace("\n", ""))
-        .map(|i| i.parse::<usize>().expect(&format!("Can't parse {}", i)))
+        .map(|i| i.parse::<usize>().unwrap())
         .collect::<Vec<_>>();
 
     for i1 in 0..100 {
@@ -91,7 +91,7 @@ fn run_program(mut memory: Vec<usize>) -> usize {
 }
 
 fn add(mem: &mut Vec<usize>, index: usize) -> Option<()> {
-    let sum = get_index_at(&mem, index + 1) + get_index_at(&mem, index + 2);
+    let sum = get_index_at(mem, index + 1) + get_index_at(mem, index + 2);
     let pos: usize = *mem.get(index + 3).unwrap();
     mem[pos] = sum;
 
@@ -99,14 +99,14 @@ fn add(mem: &mut Vec<usize>, index: usize) -> Option<()> {
 }
 
 fn mul(mem: &mut Vec<usize>, index: usize) -> Option<()> {
-    let mul = get_index_at(&mem, index + 1) * get_index_at(&mem, index + 2);
+    let mul = get_index_at(mem, index + 1) * get_index_at(mem, index + 2);
     let pos: usize = *mem.get(index + 3).unwrap();
     mem[pos] = mul;
 
     Some(())
 }
 
-fn get_index_at(mem: &Vec<usize>, position: usize) -> usize {
+fn get_index_at(mem: &[usize], position: usize) -> usize {
     let index = *mem.get(position).unwrap();
     *mem.get(index).unwrap()
 }

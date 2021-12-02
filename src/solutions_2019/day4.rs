@@ -2,7 +2,7 @@ use crate::SolutionType;
 use std::collections::HashMap;
 
 pub fn day4(input: &str) -> SolutionType {
-    let mut iter = input.trim().split("-");
+    let mut iter = input.trim().split('-');
     let n1 = iter.next().unwrap().parse().unwrap();
     let n2 = iter.next().unwrap().parse().unwrap();
     let mut count = 0;

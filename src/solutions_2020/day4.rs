@@ -41,19 +41,19 @@ pub fn day4_part2(input: &str) -> SolutionType {
                 match key {
                     "byr" => {
                         let num = val.parse::<u16>().unwrap();
-                        if 1920 <= num && num <= 2002 {
+                        if (1920..=2002).contains(&num) {
                             res += 1
                         }
                     }
                     "iyr" => {
                         let num = val.parse::<u16>().unwrap();
-                        if 2010 <= num && num <= 2020 {
+                        if (2010..=2020).contains(&num) {
                             res += 2
                         }
                     }
                     "eyr" => {
                         let num = val.parse::<u16>().unwrap();
-                        if 2020 <= num && num <= 2030 {
+                        if (2020..=2030).contains(&num) {
                             res += 4
                         }
                     }

@@ -119,7 +119,6 @@ impl Path {
             })
             .flatten()
             .filter(|i| *i != (0, 0))
-            .map(|i| i)
             .collect()
     }
 
@@ -155,7 +154,7 @@ impl Direction {
 
         match string
             .chars()
-            .nth(0)
+            .next()
             .expect("No chars in `Direction::from` string")
         {
             'U' => Direction::Up(number),
