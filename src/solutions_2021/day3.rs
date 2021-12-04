@@ -1,3 +1,5 @@
+use std::cmp::Ordering;
+
 use crate::SolutionType;
 
 pub fn day3(input: &str) -> SolutionType {
@@ -51,21 +53,19 @@ fn extract_rating(input: &str, rounding: u8) -> &str {
             }
         }
 
-        let most_common_bit = if rounding == 1 {
-            if ones_count == zeros_count {
-                '1'
-            } else if ones_count > zeros_count {
+        let most_common_bit = {
+            let i = match ones_count.cmp(&zeros_count) {
+                Ordering::Equal => true,
+                Ordering::Greater => true,
+                Ordering::Less => false,
+            };
+
+            let i = if rounding == 1 { i } else { !i };
+
+            if i {
                 '1'
             } else {
                 '0'
-            }
-        } else {
-            if ones_count == zeros_count {
-                '0'
-            } else if ones_count > zeros_count {
-                '0'
-            } else {
-                '1'
             }
         };
 
