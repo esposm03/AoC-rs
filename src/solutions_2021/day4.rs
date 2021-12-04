@@ -34,6 +34,51 @@ pub fn day4(input: &str) -> SolutionType {
     SolutionType::Int(all_unmarked * last_number as i64)
 }
 
+pub fn day4_part2(input: &str) -> SolutionType {
+    let mut input = input.split("\n\n");
+    let mut extracted = input.next().unwrap().trim().split(',');
+    let mut boards = input.map(Board::new).collect::<Vec<_>>();
+    let mut winners = vec![];
+    let mut i = extracted
+        .clone()
+        .peekable()
+        .peek()
+        .unwrap()
+        .parse()
+        .unwrap();
+    let mut last_number = i;
+
+    while !boards.iter().all(|b| b.is_winner()) {
+        i = extracted.next().unwrap().parse().unwrap();
+        last_number = i;
+
+        for b in &mut boards {
+            b.extracted_number(i);
+        }
+
+        for (i, _) in boards.iter().enumerate().filter(|(_, b)| b.is_winner()) {
+            if !winners.contains(&i) {
+                winners.push(i);
+            }
+        }
+    }
+
+    let last_winner_board = &boards[*winners.last().unwrap()];
+    let all_unmarked: i64 = last_winner_board
+        .numbers
+        .iter()
+        .enumerate()
+        .filter(|(pos, _)| {
+            let pos = *pos as u8;
+            let pos = (pos % 5, pos / 5);
+            !last_winner_board.marked.contains(&pos)
+        })
+        .map(|(_, n)| *n as i64)
+        .sum();
+
+    SolutionType::Int(all_unmarked * last_number as i64)
+}
+
 struct Board {
     pub numbers: Vec<u8>,
     // (x, y) - positions are 0..5
@@ -109,9 +154,7 @@ fn test() {
     assert_eq!(board.marked[0], (0, 2));
     assert!(board.is_winner());
 
-    assert_eq!(
-        day4(
-            "7,4,9,5,11,17,23,2,0,14,21,24,10,16,13,6,15,25,12,22,18,20,8,19,3,26,1
+    let input = "7,4,9,5,11,17,23,2,0,14,21,24,10,16,13,6,15,25,12,22,18,20,8,19,3,26,1
 
 22 13 17 11  0
  8  2 23  4 24
@@ -129,8 +172,7 @@ fn test() {
 10 16 15  9 19
 18  8 23 26 20
 22 11 13  6  5
- 2  0 12  3  7"
-        ),
-        SolutionType::Int(4512)
-    );
+ 2  0 12  3  7";
+    assert_eq!(day4(input), SolutionType::Int(4512));
+    assert_eq!(day4_part2(input), SolutionType::Int(1924));
 }
