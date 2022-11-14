@@ -130,15 +130,6 @@ fn test() {
         <{([([[(<>()){}]>(<<{{
         <{([{{}}[<[[[<>{}]]]>[]]";
 
-    let input_incomplete = "
-    [({(<(())[]>[[{[]{<()<>>
-    [(()[<>])]({[<{<<[]>>(
-    (((({<>}<{<{<>}{[]{[]{}
-    {<[[]]>}<{[{[{[]{()[[[]
-    <{([{{}}[<[[[<>{}]]]>[]]
-";
-
     assert_eq!(day10(input), SolutionType::Int(26397));
     assert_eq!(day10_part2(input), SolutionType::Int(288957));
-    //assert_eq!(day10_part2(input), SolutionType::Int(288957));
 }
