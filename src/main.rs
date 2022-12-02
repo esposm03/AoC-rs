@@ -8,6 +8,7 @@ use std::io::Read;
 mod solutions_2019;
 mod solutions_2020;
 mod solutions_2021;
+mod solutions_2022;
 
 #[derive(Parser)]
 #[clap(
@@ -16,7 +17,7 @@ mod solutions_2021;
 )]
 struct Invocation {
     /// The AoC year (default: 2021)
-    #[clap(short, long, default_value = "2021")]
+    #[clap(short, long, default_value = "2022")]
     year: usize,
     /// The problem number
     problem: usize,
@@ -133,6 +134,7 @@ fn main() {
             2019 => solutions_2019::SOLUTIONS[number](&input),
             2020 => solutions_2020::SOLUTIONS[number](&input),
             2021 => solutions_2021::SOLUTIONS[number](&input),
+            2022 => solutions_2022::SOLUTIONS[number](&input),
             _ => "Invalid year :(".into(),
         }
     );
