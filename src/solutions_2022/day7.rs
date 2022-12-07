@@ -54,6 +54,59 @@ pub fn day7(input: &str) -> SolutionType {
     SolutionType::Int(tot_size as i64)
 }
 
+pub fn day7_part2(input: &str) -> SolutionType {
+    let mut state = {
+        let mut entries = HashMap::new();
+        entries.insert(
+            0,
+            Entry::Dir(Dir {
+                name: "/".into(),
+                size: 0,
+                parent: usize::MAX,
+                children: Vec::new(),
+            }),
+        );
+        State {
+            id: 1,
+            workdir: 0,
+            entries,
+        }
+    };
+
+    for line in input.trim().lines() {
+        let line = line.trim();
+
+        if line.starts_with("$ cd ") {
+            state.change_dir(&line[5..]);
+        } else if !line.starts_with('$') {
+            let size = line.split(' ').next().unwrap();
+            let name = line.split(' ').nth(1).unwrap();
+
+            if size == "dir" && !state.exists_dir(name) {
+                state.new_dir(name.to_string());
+            }
+
+            if size != "dir" {
+                state.new_file(name.to_string(), size.parse().unwrap());
+            }
+        }
+    }
+
+    let used_space = *state.entries[&0].size();
+    let needed_space = 30_000_000 - (70_000_000 - used_space);
+    let mut min = usize::MAX;
+
+    for entry in state.entries.into_values() {
+        if let Entry::Dir(dir) = entry {
+            if dir.size >= needed_space && dir.size < min {
+                min = dir.size;
+            }
+        }
+    }
+
+    SolutionType::Int(min as i64)
+}
+
 #[derive(Debug, Clone)]
 struct Dir {
     name: String,
@@ -82,6 +135,14 @@ impl Entry {
             Self::File(file) => file.parent,
         }
     }
+
+    fn size(&self) -> &usize {
+        match self {
+            Self::Dir(dir) => &dir.size,
+            Self::File(file) => &file.size,
+        }
+    }
+
     fn size_mut(&mut self) -> &mut usize {
         match self {
             Self::Dir(dir) => &mut dir.size,
@@ -204,4 +265,5 @@ fn test() {
                 7214296 k";
 
     assert_eq!(day7(input), SolutionType::Int(95437));
+    assert_eq!(day7_part2(input), SolutionType::Int(24933642));
 }
