@@ -9,8 +9,8 @@ mod day4;
 mod day5;
 mod day6;
 mod day7;
-/*
 mod day8;
+/*
 mod day9;
 mod day10;
 mod day11;
@@ -34,9 +34,9 @@ pub use day6::day6;
 pub use day6::day6_part2;
 pub use day7::day7;
 pub use day7::day7_part2;
-/*
 pub use day8::day8;
 pub use day8::day8_part2;
+/*
 pub use day9::day9;
 pub use day9::day9_part2;
 pub use day10::day10;
@@ -52,9 +52,6 @@ pub use day14::day14_part2;
 pub use day15::day15;
 */
 
-pub fn day8_part2(_: &str) -> SolutionType {
-    unimplemented!()
-}
 pub fn day9_part2(_: &str) -> SolutionType {
     unimplemented!()
 }
@@ -104,9 +101,6 @@ pub fn day24_part2(_: &str) -> SolutionType {
     unimplemented!()
 }
 pub fn day25_part2(_: &str) -> SolutionType {
-    unimplemented!()
-}
-pub fn day8(_: &str) -> SolutionType {
     unimplemented!()
 }
 pub fn day9(_: &str) -> SolutionType {
