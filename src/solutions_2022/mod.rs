@@ -3,6 +3,7 @@ use crate::{declare_solutions, SolutionType};
 declare_solutions!();
 
 mod day1;
+mod day10;
 mod day2;
 mod day3;
 mod day4;
@@ -12,7 +13,6 @@ mod day7;
 mod day8;
 mod day9;
 /*
-mod day10;
 mod day11;
 mod day12;
 mod day13;
@@ -22,6 +22,8 @@ mod day15;
 
 pub use day1::day1;
 pub use day1::day1_part2;
+pub use day10::day10;
+pub use day10::day10_part2;
 pub use day2::day2;
 pub use day2::day2_part2;
 pub use day3::day3;
@@ -39,8 +41,6 @@ pub use day8::day8_part2;
 pub use day9::day9;
 pub use day9::day9_part2;
 /*
-pub use day10::day10;
-pub use day10::day10_part2;
 pub use day11::day11;
 pub use day11::day11_part2;
 pub use day12::day12;
@@ -52,9 +52,6 @@ pub use day14::day14_part2;
 pub use day15::day15;
 */
 
-pub fn day10_part2(_: &str) -> SolutionType {
-    unimplemented!()
-}
 pub fn day11_part2(_: &str) -> SolutionType {
     unimplemented!()
 }
@@ -98,9 +95,6 @@ pub fn day24_part2(_: &str) -> SolutionType {
     unimplemented!()
 }
 pub fn day25_part2(_: &str) -> SolutionType {
-    unimplemented!()
-}
-pub fn day10(_: &str) -> SolutionType {
     unimplemented!()
 }
 pub fn day11(_: &str) -> SolutionType {

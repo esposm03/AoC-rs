@@ -2,6 +2,7 @@
 #![allow(clippy::needless_range_loop)]
 
 use clap::Parser;
+use std::fmt::Display;
 use std::io;
 use std::io::Read;
 
@@ -50,6 +51,15 @@ impl From<Option<i64>> for SolutionType {
 impl From<&'_ str> for SolutionType {
     fn from(i: &'_ str) -> Self {
         Self::String(i.to_string())
+    }
+}
+impl Display for SolutionType {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        match self {
+            Self::Int(i) => f.write_fmt(format_args!("Solution: {i}")),
+            Self::OptionInt(i) => f.write_fmt(format_args!("Solution: {i:?}")),
+            Self::String(s) => f.write_fmt(format_args!("Solution:\n{s}")),
+        }
     }
 }
 
@@ -129,7 +139,7 @@ fn main() {
     io::stdin().read_to_string(&mut input).expect("IO error");
 
     println!(
-        "{:?}",
+        "{}",
         match invocation.year {
             2019 => solutions_2019::SOLUTIONS[number](&input),
             2020 => solutions_2020::SOLUTIONS[number](&input),
