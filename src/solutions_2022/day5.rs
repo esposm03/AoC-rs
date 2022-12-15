@@ -1,6 +1,6 @@
-use crate::SolutionType;
+use crate::Solution;
 
-pub fn day5(input: &str) -> SolutionType {
+pub fn day5(input: &str) -> Solution {
     let mut stacks = vec![
         vec!['R', 'P', 'C', 'D', 'B', 'G'],
         vec!['H', 'V', 'G'],
@@ -30,10 +30,10 @@ pub fn day5(input: &str) -> SolutionType {
     for mut stack in stacks.into_iter() {
         res.push(stack.pop().unwrap());
     }
-    SolutionType::String(res)
+    Solution::String(res)
 }
 
-pub fn day5_part2(input: &str) -> SolutionType {
+pub fn day5_part2(input: &str) -> Solution {
     let mut stacks = vec![
         vec!['R', 'P', 'C', 'D', 'B', 'G'],
         vec!['H', 'V', 'G'],
@@ -66,5 +66,5 @@ pub fn day5_part2(input: &str) -> SolutionType {
     for mut stack in stacks.into_iter() {
         res.push(stack.pop().unwrap());
     }
-    SolutionType::String(res)
+    Solution::String(res)
 }

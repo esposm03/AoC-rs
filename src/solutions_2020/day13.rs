@@ -1,6 +1,6 @@
-use crate::SolutionType;
+use crate::Solution;
 
-pub fn day13(input: &str) -> SolutionType {
+pub fn day13(input: &str) -> Solution {
     let mut lines = input.split('\n');
     let min = lines.next().unwrap().parse::<i64>().unwrap();
     let ids = lines.next().unwrap().split(',');

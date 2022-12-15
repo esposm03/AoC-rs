@@ -1,10 +1,10 @@
-use crate::SolutionType;
+use crate::Solution;
 
-pub fn day6(input: &str) -> SolutionType {
+pub fn day6(input: &str) -> Solution {
     run_simulation(input, 80).into()
 }
 
-pub fn day6_part2(input: &str) -> SolutionType {
+pub fn day6_part2(input: &str) -> Solution {
     run_simulation(input, 256).into()
 }
 
@@ -40,6 +40,6 @@ fn run_simulation(input: &str, n: i64) -> i64 {
 #[test]
 #[cfg(test)]
 fn test() {
-    assert_eq!(day6("3,4,3,1,2"), SolutionType::Int(5934));
-    assert_eq!(day6_part2("3,4,3,1,2"), SolutionType::Int(26984457539));
+    assert_eq!(day6("3,4,3,1,2"), Solution::Int(5934));
+    assert_eq!(day6_part2("3,4,3,1,2"), Solution::Int(26984457539));
 }

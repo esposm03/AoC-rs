@@ -1,8 +1,8 @@
 use pathfinding::prelude::dijkstra;
 
-use crate::SolutionType;
+use crate::Solution;
 
-pub fn day12(input: &str) -> SolutionType {
+pub fn day12(input: &str) -> Solution {
     let input = input.trim();
     let n_cols = input.lines().next().unwrap().len();
     let n_rows = input.lines().count();
@@ -38,7 +38,7 @@ pub fn day12(input: &str) -> SolutionType {
     .into()
 }
 
-pub fn day12_part2(input: &str) -> SolutionType {
+pub fn day12_part2(input: &str) -> Solution {
     let input = input.trim();
     let n_cols = input.lines().next().unwrap().len();
     let n_rows = input.lines().count();
@@ -109,5 +109,5 @@ fn test() {
                 acctuvwj
                 abdefghi";
 
-    assert_eq!(day12(input), SolutionType::Int(31))
+    assert_eq!(day12(input), Solution::Int(31))
 }

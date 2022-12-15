@@ -1,6 +1,6 @@
-use crate::SolutionType;
+use crate::Solution;
 
-pub fn day1(input: &str) -> SolutionType {
+pub fn day1(input: &str) -> Solution {
     let mut sum = 0.0;
 
     for line in input.lines() {
@@ -11,7 +11,7 @@ pub fn day1(input: &str) -> SolutionType {
     (sum as i64).into()
 }
 
-pub fn day1_part2(input: &str) -> SolutionType {
+pub fn day1_part2(input: &str) -> Solution {
     let mut sum = 0.0;
 
     for module_mass in input.lines().map(|line| line.parse::<f32>().unwrap()) {

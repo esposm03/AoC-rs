@@ -1,10 +1,10 @@
-use crate::SolutionType;
+use crate::Solution;
 
-pub fn day5(input: &str) -> SolutionType {
+pub fn day5(input: &str) -> Solution {
     input.lines().map(seat).max().unwrap().into()
 }
 
-pub fn day5_part2(input: &str) -> SolutionType {
+pub fn day5_part2(input: &str) -> Solution {
     let mut vec = vec![];
 
     for seat in input.lines().map(seat) {

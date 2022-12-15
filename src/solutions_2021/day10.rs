@@ -1,7 +1,7 @@
-use crate::SolutionType;
+use crate::Solution;
 use Parens::*;
 
-pub fn day10(input: &str) -> SolutionType {
+pub fn day10(input: &str) -> Solution {
     let mut score = 0;
     for line in input.lines() {
         let mut stack = vec![];
@@ -44,10 +44,10 @@ pub fn day10(input: &str) -> SolutionType {
         }
     }
 
-    SolutionType::Int(score)
+    Solution::Int(score)
 }
 
-pub fn day10_part2(input: &str) -> SolutionType {
+pub fn day10_part2(input: &str) -> Solution {
     let mut scores = vec![];
 
     for line in input.lines() {
@@ -105,7 +105,7 @@ pub fn day10_part2(input: &str) -> SolutionType {
     }
 
     scores.sort();
-    SolutionType::Int(scores[scores.len() / 2])
+    Solution::Int(scores[scores.len() / 2])
 }
 
 #[derive(PartialEq, Eq)]
@@ -130,6 +130,6 @@ fn test() {
         <{([([[(<>()){}]>(<<{{
         <{([{{}}[<[[[<>{}]]]>[]]";
 
-    assert_eq!(day10(input), SolutionType::Int(26397));
-    assert_eq!(day10_part2(input), SolutionType::Int(288957));
+    assert_eq!(day10(input), Solution::Int(26397));
+    assert_eq!(day10_part2(input), Solution::Int(288957));
 }

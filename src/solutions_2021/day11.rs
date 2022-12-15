@@ -1,10 +1,10 @@
-use crate::SolutionType;
+use crate::Solution;
 
-pub fn day11(input: &str) -> SolutionType {
+pub fn day11(input: &str) -> Solution {
     day11_part1(input, 100)
 }
 
-fn day11_part1(input: &str, n_steps: usize) -> SolutionType {
+fn day11_part1(input: &str, n_steps: usize) -> Solution {
     let mut mat = Matrix::new();
     let mut row = 0;
 
@@ -72,10 +72,10 @@ fn day11_part1(input: &str, n_steps: usize) -> SolutionType {
         }
     }
 
-    SolutionType::Int(total_flashed)
+    Solution::Int(total_flashed)
 }
 
-pub fn day11_part2(input: &str) -> SolutionType {
+pub fn day11_part2(input: &str) -> Solution {
     let mut mat = Matrix::new();
     let mut row = 0;
 
@@ -137,7 +137,7 @@ pub fn day11_part2(input: &str) -> SolutionType {
         }
 
         if step_flashed == 100 {
-            return SolutionType::Int(step);
+            return Solution::Int(step);
         }
 
         for col in 0..10 {
@@ -190,6 +190,6 @@ fn test() {
                 4846848554
                 5283751526";
 
-    assert_eq!(day11_part1(input, 100), SolutionType::Int(1656));
-    assert_eq!(day11_part2(input), SolutionType::Int(195));
+    assert_eq!(day11_part1(input, 100), Solution::Int(1656));
+    assert_eq!(day11_part2(input), Solution::Int(195));
 }

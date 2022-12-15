@@ -1,8 +1,8 @@
 use std::collections::HashSet;
 
-use crate::SolutionType;
+use crate::Solution;
 
-pub fn day9(input: &str) -> SolutionType {
+pub fn day9(input: &str) -> Solution {
     let hrows = input.lines().count();
     let hcols = input.lines().next().unwrap().len();
     let mut heightmap = vec![];
@@ -38,10 +38,10 @@ pub fn day9(input: &str) -> SolutionType {
         }
     }
 
-    SolutionType::Int(risk_level as i64)
+    Solution::Int(risk_level as i64)
 }
 
-pub fn day9_part2(input: &str) -> SolutionType {
+pub fn day9_part2(input: &str) -> Solution {
     let hrows = input.lines().count();
     let hcols = input.lines().next().unwrap().len();
     let mut heightmap = vec![];
@@ -92,7 +92,7 @@ pub fn day9_part2(input: &str) -> SolutionType {
     basins.sort();
     basins.reverse();
 
-    SolutionType::Int((basins[0] * basins[1] * basins[2]) as i64)
+    Solution::Int((basins[0] * basins[1] * basins[2]) as i64)
 }
 
 fn visit_basin(
@@ -177,6 +177,6 @@ fn test() {
         );
     }
 
-    assert_eq!(day9(input), SolutionType::Int(15));
-    assert_eq!(day9_part2(input), SolutionType::Int(1134));
+    assert_eq!(day9(input), Solution::Int(15));
+    assert_eq!(day9_part2(input), Solution::Int(1134));
 }

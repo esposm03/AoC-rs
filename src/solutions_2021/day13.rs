@@ -3,7 +3,7 @@ use std::{
     collections::HashSet,
 };
 
-use crate::SolutionType;
+use crate::Solution;
 
 fn day13_part(input: &str, num_steps: usize) -> HashSet<(u32, u32)> {
     let input = input.lines().map(|line| line.trim()).collect::<Vec<_>>();
@@ -42,11 +42,11 @@ fn day13_part(input: &str, num_steps: usize) -> HashSet<(u32, u32)> {
     dots
 }
 
-pub fn day13(input: &str) -> SolutionType {
+pub fn day13(input: &str) -> Solution {
     day13_part(input, 1).len().into()
 }
 
-pub fn day13_part2(input: &str) -> SolutionType {
+pub fn day13_part2(input: &str) -> Solution {
     use std::fmt::Write;
 
     let dots = day13_part(input, 9999);
@@ -72,7 +72,7 @@ pub fn day13_part2(input: &str) -> SolutionType {
         writeln!(res).unwrap();
     }
 
-    SolutionType::String(res)
+    Solution::String(res)
 }
 
 #[test]
@@ -99,5 +99,5 @@ fn test() {
                 
                 fold along y=7";
 
-    assert_eq!(day13(input), SolutionType::Int(17));
+    assert_eq!(day13(input), Solution::Int(17));
 }

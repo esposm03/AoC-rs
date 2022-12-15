@@ -1,8 +1,8 @@
 use std::cmp::Ordering;
 
-use crate::SolutionType;
+use crate::Solution;
 
-pub fn day3(input: &str) -> SolutionType {
+pub fn day3(input: &str) -> Solution {
     let num_bits = input.split('\n').next().unwrap().chars().count();
     let mut repetitions = vec![0; num_bits];
 
@@ -25,14 +25,14 @@ pub fn day3(input: &str) -> SolutionType {
         epsilon += (1 - bit) * 2_i64.pow(i as u32);
     }
 
-    SolutionType::Int(gamma * epsilon)
+    Solution::Int(gamma * epsilon)
 }
 
-pub fn day3_part2(input: &str) -> SolutionType {
+pub fn day3_part2(input: &str) -> Solution {
     let oxygen_generator_rating = extract_rating(input, 1);
     let co2_scrubber_rating = extract_rating(input, 0);
 
-    SolutionType::Int(bin_to_number(oxygen_generator_rating) * bin_to_number(co2_scrubber_rating))
+    Solution::Int(bin_to_number(oxygen_generator_rating) * bin_to_number(co2_scrubber_rating))
 }
 
 fn extract_rating(input: &str, rounding: u8) -> &str {
@@ -89,13 +89,13 @@ fn bin_to_number(binary_string: &str) -> i64 {
 fn test() {
     assert_eq!(
         day3("00100\n11110\n10110\n10111\n10101\n01111\n00111\n11100\n10000\n11001\n00010\n01010"),
-        SolutionType::Int(198),
+        Solution::Int(198),
     );
 
     assert_eq!(
         day3_part2(
             "00100\n11110\n10110\n10111\n10101\n01111\n00111\n11100\n10000\n11001\n00010\n01010",
         ),
-        SolutionType::Int(230),
+        Solution::Int(230),
     );
 }

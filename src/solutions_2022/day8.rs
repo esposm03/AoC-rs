@@ -1,6 +1,6 @@
-use crate::SolutionType;
+use crate::Solution;
 
-pub fn day8(input: &str) -> SolutionType {
+pub fn day8(input: &str) -> Solution {
     let width = input.trim().lines().next().unwrap().trim().len();
     let height = input.trim().lines().count();
     let mut mat = vec![vec![0; height]; width];
@@ -37,10 +37,10 @@ pub fn day8(input: &str) -> SolutionType {
         }
     }
 
-    SolutionType::Int(visible as i64)
+    Solution::Int(visible as i64)
 }
 
-pub fn day8_part2(input: &str) -> SolutionType {
+pub fn day8_part2(input: &str) -> Solution {
     let width = input.trim().lines().next().unwrap().trim().len();
     let height = input.trim().lines().count();
     let mut mat = vec![vec![0; height]; width];
@@ -95,7 +95,7 @@ pub fn day8_part2(input: &str) -> SolutionType {
         }
     }
 
-    SolutionType::Int(max_scenic as i64)
+    Solution::Int(max_scenic as i64)
 }
 
 #[test]
@@ -107,6 +107,6 @@ fn test() {
                 33549
                 35390";
 
-    assert_eq!(day8(input), SolutionType::Int(21));
-    assert_eq!(day8_part2(input), SolutionType::Int(8));
+    assert_eq!(day8(input), Solution::Int(21));
+    assert_eq!(day8_part2(input), Solution::Int(8));
 }

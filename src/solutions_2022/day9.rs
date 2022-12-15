@@ -1,8 +1,8 @@
 use std::{cmp::Ordering, collections::HashSet};
 
-use crate::SolutionType;
+use crate::Solution;
 
-pub fn day9(input: &str) -> SolutionType {
+pub fn day9(input: &str) -> Solution {
     let mut head = (0i32, 0i32);
     let mut tail = (0i32, 0i32);
     let mut visited = HashSet::new();
@@ -63,7 +63,7 @@ pub fn day9(input: &str) -> SolutionType {
     visited.len().into()
 }
 
-pub fn day9_part2(input: &str) -> SolutionType {
+pub fn day9_part2(input: &str) -> Solution {
     let mut knots = [(0i32, 0i32); 10];
     let mut visited = HashSet::new();
     visited.insert(knots[0]);
@@ -148,7 +148,7 @@ fn test() {
                 L 25
                 U 20";
 
-    assert_eq!(day9(input), SolutionType::Int(13));
-    assert_eq!(day9_part2(input), SolutionType::Int(1));
-    assert_eq!(day9_part2(input2), SolutionType::Int(36));
+    assert_eq!(day9(input), Solution::Int(13));
+    assert_eq!(day9_part2(input), Solution::Int(1));
+    assert_eq!(day9_part2(input2), Solution::Int(36));
 }

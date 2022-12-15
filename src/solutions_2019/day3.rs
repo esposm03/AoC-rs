@@ -1,6 +1,6 @@
-use crate::SolutionType;
+use crate::Solution;
 
-pub fn day3(input: &str) -> SolutionType {
+pub fn day3(input: &str) -> Solution {
     let mut iter = input.split('\n');
     let input = iter.next().unwrap();
     let input_2 = iter.next().unwrap();
@@ -24,7 +24,7 @@ pub fn day3(input: &str) -> SolutionType {
         .into()
 }
 
-pub fn day3_part2(input: &str) -> SolutionType {
+pub fn day3_part2(input: &str) -> Solution {
     let mut iter = input.split('\n');
     let input = iter.next().unwrap();
     let input_2 = iter.next().unwrap();
@@ -52,7 +52,7 @@ pub fn day3_part2(input: &str) -> SolutionType {
         }
     }
 
-    SolutionType::Int(min_steps.1)
+    Solution::Int(min_steps.1)
 }
 
 #[derive(Debug)]

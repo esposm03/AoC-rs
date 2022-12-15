@@ -1,6 +1,6 @@
-use crate::SolutionType;
+use crate::Solution;
 
-pub fn day4(input: &str) -> SolutionType {
+pub fn day4(input: &str) -> Solution {
     let mut count = 0;
 
     for line in input.trim().lines() {
@@ -19,10 +19,10 @@ pub fn day4(input: &str) -> SolutionType {
         }
     }
 
-    SolutionType::Int(count)
+    Solution::Int(count)
 }
 
-pub fn day4_part2(input: &str) -> SolutionType {
+pub fn day4_part2(input: &str) -> Solution {
     let mut count = 0;
 
     for line in input.trim().lines() {
@@ -45,7 +45,7 @@ pub fn day4_part2(input: &str) -> SolutionType {
         };
     }
 
-    SolutionType::Int(count as i64)
+    Solution::Int(count as i64)
 }
 
 #[test]
@@ -58,6 +58,6 @@ fn test() {
                 6-6,4-6
                 2-6,4-8";
 
-    assert_eq!(day4(input), SolutionType::Int(2));
-    assert_eq!(day4_part2(input), SolutionType::Int(4));
+    assert_eq!(day4(input), Solution::Int(2));
+    assert_eq!(day4_part2(input), Solution::Int(4));
 }

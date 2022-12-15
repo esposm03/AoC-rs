@@ -1,7 +1,7 @@
-use crate::SolutionType;
+use crate::Solution;
 use nom::{bytes::complete as bytes, character::complete as character, IResult};
 
-pub fn day2(input: &str) -> SolutionType {
+pub fn day2(input: &str) -> Solution {
     input
         .lines()
         .map(|line| Rule::parse(line).unwrap())
@@ -10,7 +10,7 @@ pub fn day2(input: &str) -> SolutionType {
         .into()
 }
 
-pub fn day2_part2(input: &str) -> SolutionType {
+pub fn day2_part2(input: &str) -> Solution {
     input
         .lines()
         .map(|line| Rule::parse(line).unwrap())

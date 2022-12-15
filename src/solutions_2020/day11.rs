@@ -1,7 +1,7 @@
-use crate::SolutionType;
+use crate::Solution;
 use Tile::*;
 
-pub fn day11(input: &str) -> SolutionType {
+pub fn day11(input: &str) -> Solution {
     let mut map = Map::parse(input);
     while map != map.simulate(true) {
         map = map.simulate(true);
@@ -14,7 +14,7 @@ pub fn day11(input: &str) -> SolutionType {
         .into()
 }
 
-pub fn day11_part2(input: &str) -> SolutionType {
+pub fn day11_part2(input: &str) -> Solution {
     let mut map = Map::parse(input);
     while map != map.simulate(false) {
         map = map.simulate(false);

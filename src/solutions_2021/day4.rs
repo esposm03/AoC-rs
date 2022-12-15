@@ -1,6 +1,6 @@
-use crate::SolutionType;
+use crate::Solution;
 
-pub fn day4(input: &str) -> SolutionType {
+pub fn day4(input: &str) -> Solution {
     let mut input = input.split("\n\n");
     let mut extracted = input.next().unwrap().trim().split(',');
     let mut boards = input.map(Board::new).collect::<Vec<_>>();
@@ -31,10 +31,10 @@ pub fn day4(input: &str) -> SolutionType {
         .map(|(_, n)| *n as i64)
         .sum();
 
-    SolutionType::Int(all_unmarked * last_number as i64)
+    Solution::Int(all_unmarked * last_number as i64)
 }
 
-pub fn day4_part2(input: &str) -> SolutionType {
+pub fn day4_part2(input: &str) -> Solution {
     let mut input = input.split("\n\n");
     let mut extracted = input.next().unwrap().trim().split(',');
     let mut boards = input.map(Board::new).collect::<Vec<_>>();
@@ -76,7 +76,7 @@ pub fn day4_part2(input: &str) -> SolutionType {
         .map(|(_, n)| *n as i64)
         .sum();
 
-    SolutionType::Int(all_unmarked * last_number as i64)
+    Solution::Int(all_unmarked * last_number as i64)
 }
 
 struct Board {
@@ -173,6 +173,6 @@ fn test() {
 18  8 23 26 20
 22 11 13  6  5
  2  0 12  3  7";
-    assert_eq!(day4(input), SolutionType::Int(4512));
-    assert_eq!(day4_part2(input), SolutionType::Int(1924));
+    assert_eq!(day4(input), Solution::Int(4512));
+    assert_eq!(day4_part2(input), Solution::Int(1924));
 }

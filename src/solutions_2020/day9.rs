@@ -1,6 +1,6 @@
-use crate::SolutionType;
+use crate::Solution;
 
-pub fn day9(input: &str) -> SolutionType {
+pub fn day9(input: &str) -> Solution {
     let preamble = 25;
     let input = input
         .lines()
@@ -16,8 +16,8 @@ pub fn day9(input: &str) -> SolutionType {
     unreachable!();
 }
 
-pub fn day9_part2(input: &str) -> SolutionType {
-    let invalid: SolutionType = day9(input);
+pub fn day9_part2(input: &str) -> Solution {
+    let invalid: Solution = day9(input);
 
     let input = input
         .lines()
@@ -27,7 +27,7 @@ pub fn day9_part2(input: &str) -> SolutionType {
     for start in 0..input.len() {
         for end in start + 1..input.len() {
             let slice = &input[start..end];
-            let sum: SolutionType = slice.iter().sum::<i64>().into();
+            let sum: Solution = slice.iter().sum::<i64>().into();
             if sum == invalid {
                 return (slice.iter().max().unwrap() + slice.iter().min().unwrap()).into();
             }

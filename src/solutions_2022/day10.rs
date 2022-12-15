@@ -1,8 +1,8 @@
-use crate::SolutionType;
+use crate::Solution;
 
 use std::fmt::Write;
 
-pub fn day10(input: &str) -> SolutionType {
+pub fn day10(input: &str) -> Solution {
     let mut x = 1;
     let mut states = vec![];
 
@@ -26,10 +26,10 @@ pub fn day10(input: &str) -> SolutionType {
         i += 40;
     }
 
-    SolutionType::Int(sum as _)
+    Solution::Int(sum as _)
 }
 
-pub fn day10_part2(input: &str) -> SolutionType {
+pub fn day10_part2(input: &str) -> Solution {
     let mut x = 1;
     let mut states = vec![];
 
@@ -62,7 +62,7 @@ pub fn day10_part2(input: &str) -> SolutionType {
         }
     }
 
-    SolutionType::String(res)
+    Solution::String(res)
 }
 
 #[test]
@@ -215,10 +215,10 @@ fn test() {
                 noop
                 noop";
 
-    assert_eq!(day10(input), SolutionType::Int(13140));
+    assert_eq!(day10(input), Solution::Int(13140));
     assert_eq!(
         day10_part2(input),
-        SolutionType::String(
+        Solution::String(
             "##..##..##..##..##..##..##..##..##..##..
 ###...###...###...###...###...###...###.
 ####....####....####....####....####....

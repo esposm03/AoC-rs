@@ -1,8 +1,8 @@
 use std::collections::{BTreeMap, HashMap};
 
-use crate::SolutionType;
+use crate::Solution;
 
-pub fn day14(input: &str) -> SolutionType {
+pub fn day14(input: &str) -> Solution {
     let mut polymer = input
         .lines()
         .next()
@@ -43,10 +43,10 @@ pub fn day14(input: &str) -> SolutionType {
     let max_amount = *counts.values().max().unwrap();
     let min_amount = *counts.values().min().unwrap();
 
-    SolutionType::Int(max_amount - min_amount)
+    Solution::Int(max_amount - min_amount)
 }
 
-pub fn day14_part2(input: &str) -> SolutionType {
+pub fn day14_part2(input: &str) -> Solution {
     let polymer = input
         .lines()
         .next()
@@ -92,7 +92,7 @@ pub fn day14_part2(input: &str) -> SolutionType {
     let max_amount = *chars.values().max().unwrap();
     let min_amount = *chars.values().min().unwrap();
 
-    SolutionType::Int(max_amount - min_amount)
+    Solution::Int(max_amount - min_amount)
 }
 
 #[test]
@@ -117,6 +117,6 @@ pub fn test() {
                 CC -> N
                 CN -> C";
 
-    assert_eq!(day14(input), SolutionType::Int(1588));
-    assert_eq!(day14_part2(input), SolutionType::Int(2188189693529));
+    assert_eq!(day14(input), Solution::Int(1588));
+    assert_eq!(day14_part2(input), Solution::Int(2188189693529));
 }

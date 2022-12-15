@@ -1,6 +1,6 @@
-use crate::SolutionType;
+use crate::Solution;
 
-pub fn day2(input: &str) -> SolutionType {
+pub fn day2(input: &str) -> Solution {
     get_index_at(&[0], 0);
 
     let mut memory = input
@@ -49,7 +49,7 @@ pub fn day2(input: &str) -> SolutionType {
     }
 }
 
-pub fn day2_part2(input: &str) -> SolutionType {
+pub fn day2_part2(input: &str) -> Solution {
     get_index_at(&[0], 0);
 
     let memory = input

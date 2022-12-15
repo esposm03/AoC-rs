@@ -1,10 +1,10 @@
-use crate::SolutionType;
+use crate::Solution;
 
 fn sum_factorial(n: i64) -> i64 {
     (1..=n).sum()
 }
 
-pub fn day7(input: &str) -> SolutionType {
+pub fn day7(input: &str) -> Solution {
     let positions = input
         .trim()
         .split(',')
@@ -19,7 +19,7 @@ pub fn day7(input: &str) -> SolutionType {
         .into()
 }
 
-pub fn day7_part2(input: &str) -> SolutionType {
+pub fn day7_part2(input: &str) -> Solution {
     let positions = input
         .trim()
         .split(',')

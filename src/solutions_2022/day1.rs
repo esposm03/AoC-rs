@@ -1,6 +1,6 @@
-use crate::SolutionType;
+use crate::Solution;
 
-pub fn day1(input: &str) -> SolutionType {
+pub fn day1(input: &str) -> Solution {
     let vec = input
         .trim()
         .lines()
@@ -18,10 +18,10 @@ pub fn day1(input: &str) -> SolutionType {
         );
     }
 
-    SolutionType::Int(*calories.iter().max().unwrap())
+    Solution::Int(*calories.iter().max().unwrap())
 }
 
-pub fn day1_part2(input: &str) -> SolutionType {
+pub fn day1_part2(input: &str) -> Solution {
     let vec = input
         .trim()
         .lines()
@@ -41,5 +41,5 @@ pub fn day1_part2(input: &str) -> SolutionType {
 
     calories.sort_unstable();
     calories.reverse();
-    SolutionType::Int(calories[0] + calories[1] + calories[2])
+    Solution::Int(calories[0] + calories[1] + calories[2])
 }

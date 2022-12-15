@@ -2,9 +2,9 @@ use std::cmp::Ordering;
 
 use nom::{bytes::complete as bytes, combinator::map, multi, IResult};
 
-use crate::SolutionType;
+use crate::Solution;
 
-pub fn day13(input: &str) -> SolutionType {
+pub fn day13(input: &str) -> Solution {
     let input = input
         .trim()
         .lines()
@@ -29,7 +29,7 @@ pub fn day13(input: &str) -> SolutionType {
     sum.into()
 }
 
-pub fn day13_part2(input: &str) -> SolutionType {
+pub fn day13_part2(input: &str) -> Solution {
     let div1 = parse_packet("[[2]]").unwrap().1;
     let div2 = parse_packet("[[6]]").unwrap().1;
     let mut packets = input
@@ -151,6 +151,6 @@ fn test() {
                 [1,[2,[3,[4,[5,6,7]]]],8,9]
                 [1,[2,[3,[4,[5,6,0]]]],8,9]";
 
-    assert_eq!(day13(input), SolutionType::Int(13));
-    assert_eq!(day13_part2(input), SolutionType::Int(140));
+    assert_eq!(day13(input), Solution::Int(13));
+    assert_eq!(day13_part2(input), Solution::Int(140));
 }

@@ -1,8 +1,8 @@
 use std::collections::HashSet;
 
-use crate::SolutionType;
+use crate::Solution;
 
-pub fn day3(input: &str) -> SolutionType {
+pub fn day3(input: &str) -> Solution {
     let mut sum = 0;
     let mut comp1_set = HashSet::new();
     let mut comp2_set = HashSet::new();
@@ -28,7 +28,7 @@ pub fn day3(input: &str) -> SolutionType {
     sum.into()
 }
 
-pub fn day3_part2(input: &str) -> SolutionType {
+pub fn day3_part2(input: &str) -> Solution {
     let mut sum = 0;
     let mut sack0_set = HashSet::new();
     let mut sack1_set = HashSet::new();
@@ -73,6 +73,6 @@ fn test() {
                 ttgJtRGJQctTZtZT
                 CrZsJsPPZsGzwwsLwLmpwMDw";
 
-    assert_eq!(day3(input), SolutionType::Int(157));
-    assert_eq!(day3_part2(input), SolutionType::Int(70));
+    assert_eq!(day3(input), Solution::Int(157));
+    assert_eq!(day3_part2(input), Solution::Int(70));
 }

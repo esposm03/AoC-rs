@@ -1,6 +1,6 @@
-use crate::SolutionType;
+use crate::Solution;
 
-pub fn day8(input: &str) -> SolutionType {
+pub fn day8(input: &str) -> Solution {
     let mut sum = 0;
 
     for line in input.lines() {
@@ -14,10 +14,10 @@ pub fn day8(input: &str) -> SolutionType {
         }
     }
 
-    SolutionType::Int(sum)
+    Solution::Int(sum)
 }
 
-pub fn day8_part2(input: &str) -> SolutionType {
+pub fn day8_part2(input: &str) -> Solution {
     let mut sum = 0;
 
     for line in input.lines() {
@@ -94,7 +94,7 @@ pub fn day8_part2(input: &str) -> SolutionType {
         sum += number;
     }
 
-    SolutionType::Int(sum)
+    Solution::Int(sum)
 }
 
 fn find_char_occurring(haystack: &str, wanted_occurrences: usize) -> char {
@@ -142,7 +142,7 @@ fn test() {
         egadfb cdbfeg cegd fecab cgb gbdefca cg fgcdab egfdb bfceg | gbdfcae bgc cg cgb
         gcafb gcf dcaebfg ecagb gf abcdeg gaef cafbge fdbac fegbdc | fgae cfgab fg bagce";
 
-    assert_eq!(day8(input), SolutionType::Int(26));
+    assert_eq!(day8(input), Solution::Int(26));
 }
 
 #[test]
@@ -163,6 +163,6 @@ fn test_part2() {
         egadfb cdbfeg cegd fecab cgb gbdefca cg fgcdab egfdb bfceg | gbdfcae bgc cg cgb
         gcafb gcf dcaebfg ecagb gf abcdeg gaef cafbge fdbac fegbdc | fgae cfgab fg bagce";
 
-    assert_eq!(day8_part2(input), SolutionType::Int(5353));
-    assert_eq!(day8_part2(input2), SolutionType::Int(61229));
+    assert_eq!(day8_part2(input), Solution::Int(5353));
+    assert_eq!(day8_part2(input2), Solution::Int(61229));
 }

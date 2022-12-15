@@ -1,7 +1,7 @@
-use crate::SolutionType;
+use crate::Solution;
 use std::collections::HashMap;
 
-pub fn day7(input: &str) -> SolutionType {
+pub fn day7(input: &str) -> Solution {
     let map = input
         .lines()
         .map(|ln| parsing::line(ln).unwrap().1)
@@ -19,7 +19,7 @@ pub fn day7(input: &str) -> SolutionType {
     count.into()
 }
 
-pub fn day7_part2(input: &str) -> SolutionType {
+pub fn day7_part2(input: &str) -> Solution {
     let map = input
         .lines()
         .map(|ln| parsing::line(ln).unwrap().1)

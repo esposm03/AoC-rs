@@ -27,33 +27,33 @@ struct Invocation {
 }
 
 #[derive(Debug, PartialEq, Eq)]
-pub enum SolutionType {
+pub enum Solution {
     Int(i64),
     OptionInt(Option<i64>),
     String(String),
 }
 
-impl From<i64> for SolutionType {
+impl From<i64> for Solution {
     fn from(i: i64) -> Self {
         Self::Int(i)
     }
 }
-impl From<usize> for SolutionType {
+impl From<usize> for Solution {
     fn from(i: usize) -> Self {
         Self::Int(i.try_into().unwrap())
     }
 }
-impl From<Option<i64>> for SolutionType {
+impl From<Option<i64>> for Solution {
     fn from(i: Option<i64>) -> Self {
         Self::OptionInt(i)
     }
 }
-impl From<&'_ str> for SolutionType {
+impl From<&'_ str> for Solution {
     fn from(i: &'_ str) -> Self {
         Self::String(i.to_string())
     }
 }
-impl Display for SolutionType {
+impl Display for Solution {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         match self {
             Self::Int(i) => f.write_fmt(format_args!("Solution: {i}")),
@@ -66,7 +66,7 @@ impl Display for SolutionType {
 #[macro_export]
 macro_rules! declare_solutions {
     () => {
-        pub const SOLUTIONS: [for<'r> fn(&'r str) -> SolutionType; 50] = [
+        pub const SOLUTIONS: [for<'r> fn(&'r str) -> Solution; 50] = [
             day1,
             day1_part2,
             day2,

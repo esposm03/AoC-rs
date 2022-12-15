@@ -1,6 +1,6 @@
-use crate::SolutionType;
+use crate::Solution;
 
-pub fn day4(input: &str) -> SolutionType {
+pub fn day4(input: &str) -> Solution {
     let passports = input.split("\n\n").filter(|i| i != &"");
 
     passports
@@ -23,7 +23,7 @@ pub fn day4(input: &str) -> SolutionType {
         .into()
 }
 
-pub fn day4_part2(input: &str) -> SolutionType {
+pub fn day4_part2(input: &str) -> Solution {
     let passports = input.split("\n\n").filter(|i| i != &"");
 
     passports

@@ -1,6 +1,6 @@
-use crate::SolutionType;
+use crate::Solution;
 
-pub fn day6(input: &str) -> SolutionType {
+pub fn day6(input: &str) -> Solution {
     let mut iter = input.trim().chars();
     let mut a = iter.next().unwrap();
     let mut b = iter.next().unwrap();
@@ -31,7 +31,7 @@ pub fn day6(input: &str) -> SolutionType {
     unreachable!()
 }
 
-pub fn day6_part2(input: &str) -> SolutionType {
+pub fn day6_part2(input: &str) -> Solution {
     let input = input.chars().collect::<Vec<_>>();
     let mut last_received = [
         input[0], input[1], input[2], input[3], input[4], input[5], input[6], input[7], input[8],
@@ -65,15 +65,15 @@ pub fn day6_part2(input: &str) -> SolutionType {
 #[cfg(test)]
 #[rustfmt::skip]
 fn test() {
-    assert_eq!(day6("mjqjpqmgbljsphdztnvjfqwrcgsmlb"), SolutionType::Int(7));
-    assert_eq!(day6("bvwbjplbgvbhsrlpgdmjqwftvncz"), SolutionType::Int(5));
-    assert_eq!(day6("nppdvjthqldpwncqszvftbrmjlhg"), SolutionType::Int(6));
-    assert_eq!(day6("nznrnfrfntjfmvfwmzdfjlvtqnbhcprsg"), SolutionType::Int(10));
-    assert_eq!(day6("zcfzfwzzqfrljwzlrfnpqdbhtmscgvjw"), SolutionType::Int(11));
+    assert_eq!(day6("mjqjpqmgbljsphdztnvjfqwrcgsmlb"), Solution::Int(7));
+    assert_eq!(day6("bvwbjplbgvbhsrlpgdmjqwftvncz"), Solution::Int(5));
+    assert_eq!(day6("nppdvjthqldpwncqszvftbrmjlhg"), Solution::Int(6));
+    assert_eq!(day6("nznrnfrfntjfmvfwmzdfjlvtqnbhcprsg"), Solution::Int(10));
+    assert_eq!(day6("zcfzfwzzqfrljwzlrfnpqdbhtmscgvjw"), Solution::Int(11));
 
-    assert_eq!(day6_part2("mjqjpqmgbljsphdztnvjfqwrcgsmlb"), SolutionType::Int(19));
-    assert_eq!(day6_part2("bvwbjplbgvbhsrlpgdmjqwftvncz"), SolutionType::Int(23));
-    assert_eq!(day6_part2("nppdvjthqldpwncqszvftbrmjlhg"), SolutionType::Int(23));
-    assert_eq!(day6_part2("nznrnfrfntjfmvfwmzdfjlvtqnbhcprsg"), SolutionType::Int(29));
-    assert_eq!(day6_part2("zcfzfwzzqfrljwzlrfnpqdbhtmscgvjw"), SolutionType::Int(26));
+    assert_eq!(day6_part2("mjqjpqmgbljsphdztnvjfqwrcgsmlb"), Solution::Int(19));
+    assert_eq!(day6_part2("bvwbjplbgvbhsrlpgdmjqwftvncz"), Solution::Int(23));
+    assert_eq!(day6_part2("nppdvjthqldpwncqszvftbrmjlhg"), Solution::Int(23));
+    assert_eq!(day6_part2("nznrnfrfntjfmvfwmzdfjlvtqnbhcprsg"), Solution::Int(29));
+    assert_eq!(day6_part2("zcfzfwzzqfrljwzlrfnpqdbhtmscgvjw"), Solution::Int(26));
 }

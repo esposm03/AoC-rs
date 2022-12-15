@@ -1,6 +1,6 @@
-use crate::SolutionType;
+use crate::Solution;
 
-pub fn day2(input: &str) -> SolutionType {
+pub fn day2(input: &str) -> Solution {
     let mut horizontal = 0;
     let mut vertical = 0;
 
@@ -16,10 +16,10 @@ pub fn day2(input: &str) -> SolutionType {
         }
     }
 
-    SolutionType::Int(horizontal * vertical)
+    Solution::Int(horizontal * vertical)
 }
 
-pub fn day2_part2(input: &str) -> SolutionType {
+pub fn day2_part2(input: &str) -> Solution {
     let mut horizontal = 0;
     let mut vertical = 0;
     let mut aim = 0;
@@ -39,7 +39,7 @@ pub fn day2_part2(input: &str) -> SolutionType {
         }
     }
 
-    SolutionType::Int(horizontal * vertical)
+    Solution::Int(horizontal * vertical)
 }
 
 #[test]
@@ -47,10 +47,10 @@ pub fn day2_part2(input: &str) -> SolutionType {
 fn test() {
     assert_eq!(
         day2("forward 5\ndown 5\nforward 8\nup 3\ndown 8\nforward 2"),
-        SolutionType::Int(150)
+        Solution::Int(150)
     );
     assert_eq!(
         day2_part2("forward 5\ndown 5\nforward 8\nup 3\ndown 8\nforward 2"),
-        SolutionType::Int(900)
+        Solution::Int(900)
     );
 }

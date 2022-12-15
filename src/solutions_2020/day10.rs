@@ -1,7 +1,7 @@
-use crate::SolutionType;
+use crate::Solution;
 use std::collections::HashMap;
 
-pub fn day10(input: &str) -> SolutionType {
+pub fn day10(input: &str) -> Solution {
     let mut input = input
         .lines()
         .map(|i| i.parse::<i64>().unwrap())
@@ -24,7 +24,7 @@ pub fn day10(input: &str) -> SolutionType {
     (num1 * num3).into()
 }
 
-pub fn day10_part2(input: &str) -> SolutionType {
+pub fn day10_part2(input: &str) -> Solution {
     // I copied this code from [here](https://github.com/AxlLind/AdventOfCode2020/blob/master/src/bin/10.rs),
     // as sadly I couldn't do it :(
 

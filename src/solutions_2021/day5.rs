@@ -1,8 +1,8 @@
 use std::cmp::Ordering;
 
-use crate::SolutionType;
+use crate::Solution;
 
-pub fn day5(input: &str) -> SolutionType {
+pub fn day5(input: &str) -> Solution {
     // First index is columns, second index is rows
     let mut matrix: Box<[[u16; 1000]; 1000]> = Box::new([[0; 1000]; 1000]);
 
@@ -43,10 +43,10 @@ pub fn day5(input: &str) -> SolutionType {
             }
         }
     }
-    SolutionType::Int(sum as i64)
+    Solution::Int(sum as i64)
 }
 
-pub fn day5_part2(input: &str) -> SolutionType {
+pub fn day5_part2(input: &str) -> Solution {
     // First index is columns, second index is rows
     let mut matrix: Box<[[u16; 1000]; 1000]> = Box::new([[0; 1000]; 1000]);
 
@@ -102,7 +102,7 @@ pub fn day5_part2(input: &str) -> SolutionType {
             }
         }
     }
-    SolutionType::Int(sum)
+    Solution::Int(sum)
 }
 
 #[test]
@@ -119,6 +119,6 @@ fn test() {
                 0,0,8,8
                 5,5,8,2";
 
-    assert_eq!(day5(input), SolutionType::Int(5));
-    assert_eq!(day5_part2(input), SolutionType::Int(12));
+    assert_eq!(day5(input), Solution::Int(5));
+    assert_eq!(day5_part2(input), Solution::Int(12));
 }

@@ -1,8 +1,8 @@
 use std::collections::{HashMap, HashSet};
 
-use crate::SolutionType;
+use crate::Solution;
 
-pub fn day12(input: &str) -> SolutionType {
+pub fn day12(input: &str) -> Solution {
     fn visit_node<'a>(
         nodes: &mut HashMap<&'a str, Node<'a>>,
         mut already_visited: HashSet<&'a str>,
@@ -42,7 +42,7 @@ pub fn day12(input: &str) -> SolutionType {
     visit_node(&mut nodes, HashSet::new(), "start").into()
 }
 
-pub fn day12_part2(input: &str) -> SolutionType {
+pub fn day12_part2(input: &str) -> Solution {
     fn visit_node<'a>(
         nodes: &mut HashMap<&'a str, Node<'a>>,
         mut already_visited: HashSet<&'a str>,
@@ -177,11 +177,11 @@ fn test() {
                 pj-fs
                 start-RW";
 
-    assert_eq!(day12(input), SolutionType::Int(10));
-    assert_eq!(day12(input2), SolutionType::Int(19));
-    assert_eq!(day12(input3), SolutionType::Int(226));
+    assert_eq!(day12(input), Solution::Int(10));
+    assert_eq!(day12(input2), Solution::Int(19));
+    assert_eq!(day12(input3), Solution::Int(226));
 
-    assert_eq!(day12_part2(input), SolutionType::Int(36));
-    assert_eq!(day12_part2(input2), SolutionType::Int(103));
-    assert_eq!(day12_part2(input3), SolutionType::Int(3509));
+    assert_eq!(day12_part2(input), Solution::Int(36));
+    assert_eq!(day12_part2(input2), Solution::Int(103));
+    assert_eq!(day12_part2(input3), Solution::Int(3509));
 }

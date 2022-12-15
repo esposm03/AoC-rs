@@ -1,6 +1,6 @@
-use crate::SolutionType;
+use crate::Solution;
 
-pub fn day3(input: &str) -> SolutionType {
+pub fn day3(input: &str) -> Solution {
     let map = Map::parse(input);
 
     let mut treecount = 0_i64;
@@ -17,7 +17,7 @@ pub fn day3(input: &str) -> SolutionType {
     treecount.into()
 }
 
-pub fn day3_part2(input: &str) -> SolutionType {
+pub fn day3_part2(input: &str) -> Solution {
     let map = Map::parse(input);
     let slopes = [(1, 1), (3, 1), (5, 1), (7, 1), (1, 2)];
     let mut total = 1_i64;

@@ -1,7 +1,7 @@
-use crate::SolutionType;
+use crate::Solution;
 use std::collections::{HashMap, HashSet};
 
-pub fn day6(input: &str) -> SolutionType {
+pub fn day6(input: &str) -> Solution {
     input
         .split("\n\n")
         .map(|group| {
@@ -20,7 +20,7 @@ pub fn day6(input: &str) -> SolutionType {
         .into()
 }
 
-pub fn day6_part2(input: &str) -> SolutionType {
+pub fn day6_part2(input: &str) -> Solution {
     input
         .split("\n\n")
         .map(|group| {

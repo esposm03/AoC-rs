@@ -1,10 +1,10 @@
 use std::collections::HashMap;
 
-use crate::SolutionType;
+use crate::Solution;
 
 type Id = usize;
 
-pub fn day7(input: &str) -> SolutionType {
+pub fn day7(input: &str) -> Solution {
     let mut state = {
         let mut entries = HashMap::new();
         entries.insert(
@@ -51,10 +51,10 @@ pub fn day7(input: &str) -> SolutionType {
         }
     }
 
-    SolutionType::Int(tot_size as i64)
+    Solution::Int(tot_size as i64)
 }
 
-pub fn day7_part2(input: &str) -> SolutionType {
+pub fn day7_part2(input: &str) -> Solution {
     let mut state = {
         let mut entries = HashMap::new();
         entries.insert(
@@ -104,7 +104,7 @@ pub fn day7_part2(input: &str) -> SolutionType {
         }
     }
 
-    SolutionType::Int(min as i64)
+    Solution::Int(min as i64)
 }
 
 #[derive(Debug, Clone)]
@@ -264,6 +264,6 @@ fn test() {
                 5626152 d.ext
                 7214296 k";
 
-    assert_eq!(day7(input), SolutionType::Int(95437));
-    assert_eq!(day7_part2(input), SolutionType::Int(24933642));
+    assert_eq!(day7(input), Solution::Int(95437));
+    assert_eq!(day7_part2(input), Solution::Int(24933642));
 }

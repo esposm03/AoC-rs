@@ -1,6 +1,6 @@
-use crate::SolutionType;
+use crate::Solution;
 
-pub fn day2(input: &str) -> SolutionType {
+pub fn day2(input: &str) -> Solution {
     let mut total_score = 0;
 
     for round in input.trim().lines() {
@@ -20,10 +20,10 @@ pub fn day2(input: &str) -> SolutionType {
         }
     }
 
-    SolutionType::Int(total_score)
+    Solution::Int(total_score)
 }
 
-pub fn day2_part2(input: &str) -> SolutionType {
+pub fn day2_part2(input: &str) -> Solution {
     let mut total_score = 0;
 
     for round in input.trim().lines() {
@@ -49,5 +49,5 @@ pub fn day2_part2(input: &str) -> SolutionType {
         }
     }
 
-    SolutionType::Int(total_score)
+    Solution::Int(total_score)
 }

@@ -1,7 +1,7 @@
-use crate::SolutionType;
+use crate::Solution;
 use std::collections::HashSet;
 
-pub fn day8_part2(input: &str) -> SolutionType {
+pub fn day8_part2(input: &str) -> Solution {
     let mut program = input.lines().map(parse_line).collect::<Vec<_>>();
     let jmp_indices = program
         .iter()
@@ -34,7 +34,7 @@ pub fn day8_part2(input: &str) -> SolutionType {
     unreachable!();
 }
 
-pub fn day8(input: &str) -> SolutionType {
+pub fn day8(input: &str) -> Solution {
     let program = input.lines().map(parse_line).collect::<Vec<_>>();
     run_prog(&program).unwrap_err().into()
 }

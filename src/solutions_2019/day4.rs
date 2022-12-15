@@ -1,7 +1,7 @@
-use crate::SolutionType;
+use crate::Solution;
 use std::collections::HashMap;
 
-pub fn day4(input: &str) -> SolutionType {
+pub fn day4(input: &str) -> Solution {
     let mut iter = input.trim().split('-');
     let n1 = iter.next().unwrap().parse().unwrap();
     let n2 = iter.next().unwrap().parse().unwrap();
@@ -23,10 +23,10 @@ pub fn day4(input: &str) -> SolutionType {
         }
     }
 
-    SolutionType::Int(count)
+    Solution::Int(count)
 }
 
-pub fn day4_part2(input: &str) -> SolutionType {
+pub fn day4_part2(input: &str) -> Solution {
     let mut iter = input.trim().split('-');
     let n1 = iter.next().unwrap().parse().unwrap();
     let n2 = iter.next().unwrap().parse().unwrap();
@@ -48,7 +48,7 @@ pub fn day4_part2(input: &str) -> SolutionType {
         }
     }
 
-    SolutionType::Int(count)
+    Solution::Int(count)
 }
 
 fn pw_valid_part1(range: std::ops::RangeInclusive<u32>, from: [u8; 6]) -> bool {

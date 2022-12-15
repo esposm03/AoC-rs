@@ -1,6 +1,6 @@
-use crate::SolutionType;
+use crate::Solution;
 
-pub fn day1(input: &str) -> SolutionType {
+pub fn day1(input: &str) -> Solution {
     let input_numbers = input
         .lines()
         .map(|s| s.parse().expect("Can't parse a number"))
@@ -21,7 +21,7 @@ pub fn day1(input: &str) -> SolutionType {
     None.into()
 }
 
-pub fn day1_part2(input: &str) -> SolutionType {
+pub fn day1_part2(input: &str) -> Solution {
     let input_numbers = input
         .lines()
         .map(|s| s.parse().expect("Can't parse a number"))

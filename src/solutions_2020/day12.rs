@@ -1,7 +1,7 @@
-use crate::SolutionType;
+use crate::Solution;
 use Action::*;
 
-pub fn day12(input: &str) -> SolutionType {
+pub fn day12(input: &str) -> Solution {
     // Coordinates: we have x, which is the east-west axis, positive when moving towards east
     // we have y, which is the north-south axis, positive when moving towards north
     let (x, y, _) = input.lines().map(Action::parse).fold(
@@ -63,7 +63,7 @@ pub fn day12(input: &str) -> SolutionType {
     (x.abs() + y.abs()).into()
 }
 
-pub fn day12_part2(input: &str) -> SolutionType {
+pub fn day12_part2(input: &str) -> Solution {
     let mut wp_x = 10;
     let mut wp_y = 1;
     let mut x = 0;
