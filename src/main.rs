@@ -17,7 +17,7 @@ mod solutions_2022;
     author = "esposm03 <36164633+esposm03@users.noreply.github.com>"
 )]
 struct Invocation {
-    /// The AoC year (default: 2021)
+    /// The AoC year (default: 2022)
     #[clap(short, long, default_value = "2022")]
     year: usize,
     /// The problem number
