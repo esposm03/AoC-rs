@@ -28,6 +28,8 @@ pub use day12::day12_part2;
 pub use day13::day13;
 pub use day13::day13_part2;
 pub use day14::day14;
+pub use day14::day14_part2;
+pub use day15::day15;
 pub use day2::day2;
 pub use day2::day2_part2;
 pub use day3::day3;
@@ -44,16 +46,8 @@ pub use day8::day8;
 pub use day8::day8_part2;
 pub use day9::day9;
 pub use day9::day9_part2;
-/*
-pub use day11::day11_part2;
-pub use day14::day14_part2;
-*/
-pub use day15::day15;
 
 pub fn day11_part2(_: &str) -> Solution {
-    unimplemented!()
-}
-pub fn day14_part2(_: &str) -> Solution {
     unimplemented!()
 }
 pub fn day15_part2(_: &str) -> Solution {
