@@ -1,39 +1,9 @@
 use std::cmp::{max, min};
 
-use crate::Solution;
-
-#[cfg(not(test))]
-use std::process::{ChildStdin, Command, Stdio};
+use crate::{Solution, Visualization};
 
 pub fn day14(input: &str) -> Solution {
-    #[cfg(not(test))]
-    let ffmpeg = Command::new("ffmpeg")
-        .args(&[
-            "-loglevel",
-            "warning",
-            "-stats",
-            "-f",
-            "rawvideo",
-            "-pixel_format",
-            "rgb24",
-            "-video_size",
-            "1280x720",
-            "-framerate",
-            "30",
-            "-i",
-            "-",
-            "-pix_fmt",
-            "yuv420p",
-            "-y",
-            "output.mp4",
-        ])
-        .stderr(Stdio::null())
-        .stdout(Stdio::piped())
-        .stdin(Stdio::piped())
-        .spawn()
-        .unwrap();
-    #[cfg(not(test))]
-    let mut stdin = ffmpeg.stdin.unwrap();
+    let mut vis = Visualization::new(4);
 
     let mut min_x = usize::MAX;
     let mut max_x = usize::MIN;
@@ -71,8 +41,7 @@ pub fn day14(input: &str) -> Solution {
         }
     }
 
-    #[cfg(not(test))]
-    draw(&mut stdin, &mat);
+    vis.draw(draw, &mat);
 
     let mut deposited = 0;
     let mut finished = false;
@@ -114,33 +83,20 @@ pub fn day14(input: &str) -> Solution {
                 mat[sand.0][sand.1] = Tile::Sand;
             }
         }
-
-        #[cfg(not(test))]
-        draw(&mut stdin, &mat);
+        vis.draw(draw, &mat);
     }
+
+    vis.close();
 
     Solution::Int(deposited)
 }
 
-#[cfg(not(test))]
-fn draw(stdin: &mut ChildStdin, mat: &Vec<Vec<Tile>>) {
-    use std::{io::Write, sync::Mutex};
-
-    static FRAME: Mutex<[u8; 1280 * 720 * 3]> = Mutex::new([0; 1280 * 720 * 3]);
-    let mut frame = FRAME.lock().unwrap();
-
+fn draw(vis: &mut Visualization, mat: &Vec<Vec<Tile>>) {
     assert!(
         mat.len() * mat[0].len() <= 1280 * 720,
         "Matrix too big for frame"
     );
 
-    let mut set_pixel = |x, y, (r, g, b)| {
-        frame[y * 1280 * 3 + x * 3 + 0] = r;
-        frame[y * 1280 * 3 + x * 3 + 1] = g;
-        frame[y * 1280 * 3 + x * 3 + 2] = b;
-    };
-
-    let scale = 4;
     for x in 0..mat.len() {
         for y in 0..mat[0].len() {
             let rgb = match mat[x][y] {
@@ -149,16 +105,9 @@ fn draw(stdin: &mut ChildStdin, mat: &Vec<Vec<Tile>>) {
                 Tile::Air => (0, 0, 0),
             };
 
-            for xs in 0..scale {
-                for ys in 0..scale {
-                    set_pixel(scale * x + xs, scale * y + ys, rgb);
-                }
-            }
+            vis.set_pixel(x, y, rgb);
         }
     }
-
-    stdin.write_all(frame.as_slice()).unwrap();
-    frame.fill(0);
 }
 
 #[derive(Copy, Clone)]

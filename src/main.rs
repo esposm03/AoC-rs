@@ -2,9 +2,11 @@
 #![allow(clippy::needless_range_loop)]
 
 use clap::Parser;
-use std::fmt::Display;
-use std::io;
-use std::io::Read;
+use std::{
+    fmt::Display,
+    io::{self, Read, Write},
+    process::{Child, Command, Stdio},
+};
 
 mod solutions_2019;
 mod solutions_2020;
@@ -20,6 +22,9 @@ struct Invocation {
     /// The AoC year (default: 2022)
     #[clap(short, long, default_value = "2022")]
     year: usize,
+    /// Whether to generate visualizations using ffmpeg
+    #[arg(long)]
+    visualization: bool,
     /// The problem number
     problem: usize,
     /// The problem part (1 or 2)
@@ -133,6 +138,11 @@ fn main() {
         println!("Invalid part :(");
         return;
     }
+    if invocation.visualization {
+        unsafe {
+            VISUALIZATION_ENABLED = true;
+        }
+    }
 
     println!("Now paste the input: ");
     let mut input = String::new();
@@ -148,4 +158,88 @@ fn main() {
             _ => "Invalid year :(".into(),
         }
     );
+}
+
+static mut VISUALIZATION_ENABLED: bool = false;
+
+struct Visualization {
+    process: Option<Child>,
+    frame: Box<[u8; 1280 * 720 * 3]>,
+    scale: u8,
+}
+impl Visualization {
+    pub fn new(scale: u8) -> Self {
+        let enabled = unsafe { VISUALIZATION_ENABLED };
+        let args = [
+            "-loglevel",
+            "warning",
+            "-stats",
+            "-f",
+            "rawvideo",
+            "-pixel_format",
+            "rgb24",
+            "-video_size",
+            "1280x720",
+            "-framerate",
+            "30",
+            "-i",
+            "-",
+            "-pix_fmt",
+            "yuv420p",
+            "-y",
+            "output.mp4",
+        ];
+
+        Visualization {
+            process: enabled.then(|| {
+                Command::new("ffmpeg")
+                    .args(&args)
+                    .stderr(Stdio::null())
+                    .stdout(Stdio::piped())
+                    .stdin(Stdio::piped())
+                    .spawn()
+                    .expect("Failed to start ffmpeg")
+            }),
+            frame: Box::new([0; 1280 * 720 * 3]),
+            scale,
+        }
+    }
+
+    pub fn draw<D, F: Fn(&mut Visualization, D)>(&mut self, func: F, data: D) {
+        let stdin = self
+            .process
+            .as_mut()
+            .map(|proc| proc.stdin.take())
+            .flatten();
+
+        if let Some(mut stdin) = stdin {
+            self.frame.fill(0);
+
+            func(self, data);
+
+            stdin.write_all(&*self.frame).unwrap();
+
+            self.process.as_mut().unwrap().stdin = Some(stdin);
+        }
+    }
+
+    pub fn set_pixel(&mut self, x: usize, y: usize, (r, g, b): (u8, u8, u8)) {
+        for xs in 0..self.scale {
+            for ys in 0..self.scale {
+                let x = self.scale as usize * x + xs as usize;
+                let y = self.scale as usize * y + ys as usize;
+
+                self.frame[y * 1280 * 3 + x * 3 + 0] = r;
+                self.frame[y * 1280 * 3 + x * 3 + 1] = g;
+                self.frame[y * 1280 * 3 + x * 3 + 2] = b;
+            }
+        }
+    }
+
+    pub fn close(self) {
+        if let Some(mut proc) = self.process {
+            drop(proc.stdin.as_mut().unwrap());
+            println!("ffmpeg exit status: {}", proc.wait().unwrap());
+        }
+    }
 }
