@@ -83,7 +83,7 @@ pub fn day9_part2(input: &str) -> Solution {
         basins.push(visit_basin(
             (point.0 as isize, point.1 as isize),
             &mut already_visited,
-            &mut heightmap,
+            &heightmap,
             hcols,
             hrows,
         ));

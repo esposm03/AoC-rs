@@ -70,27 +70,24 @@ fn parse_list(i: &str) -> IResult<&str, El> {
     Ok((c, El::List(l)))
 }
 
-#[derive(Debug, Clone, PartialEq, Eq, Ord)]
+#[derive(Debug, Clone, PartialEq, Eq)]
 enum El {
     List(Vec<El>),
     Elem(u32),
 }
 impl PartialOrd for El {
     fn partial_cmp(&self, other: &Self) -> Option<Ordering> {
-        Some(cmp(self, other))
+        Some(self.cmp(other))
+    }
+}
+impl Ord for El {
+    fn cmp(&self, other: &Self) -> Ordering {
+        cmp(self, other)
     }
 }
 fn cmp(a: &El, b: &El) -> Ordering {
     let ord = match (a, b) {
-        (El::Elem(a), El::Elem(b)) => {
-            if a < b {
-                Ordering::Less
-            } else if a > b {
-                Ordering::Greater
-            } else {
-                Ordering::Equal
-            }
-        }
+        (El::Elem(a), El::Elem(b)) => a.cmp(b),
         (El::List(a), El::List(b)) => a
             .iter()
             .zip(b.iter())
@@ -104,13 +101,7 @@ fn cmp(a: &El, b: &El) -> Ordering {
     if ord == Ordering::Equal {
         if let El::List(a) = a {
             if let El::List(b) = b {
-                return if a.len() < b.len() {
-                    Ordering::Less
-                } else if a.len() > b.len() {
-                    Ordering::Greater
-                } else {
-                    Ordering::Equal
-                };
+                return a.len().cmp(&b.len());
             }
         }
     }

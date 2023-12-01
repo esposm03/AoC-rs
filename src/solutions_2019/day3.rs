@@ -106,7 +106,7 @@ impl Path {
     pub fn intersections_with_second_part(&self, other: &Path) -> Vec<(i64, i64)> {
         self.path
             .iter()
-            .map(|path_1| {
+            .flat_map(|path_1| {
                 let mut res = vec![];
 
                 for path_2 in &other.path {
@@ -117,7 +117,6 @@ impl Path {
 
                 res
             })
-            .flatten()
             .filter(|i| *i != (0, 0))
             .collect()
     }

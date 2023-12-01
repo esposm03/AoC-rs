@@ -15,7 +15,7 @@ pub fn day11(input: &str) -> Solution {
         let test = iter.next().unwrap();
         let test = test.split(' ').nth(5).unwrap().parse().unwrap();
         let if_true = iter.next().unwrap()[29..].parse().unwrap();
-        let if_false = (&iter.next().unwrap()[30..]).parse().unwrap();
+        let if_false = iter.next().unwrap()[30..].parse().unwrap();
 
         monkeys.push(Monkey {
             items,

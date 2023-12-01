@@ -63,7 +63,7 @@ pub fn day8_part2(input: &str) -> Solution {
                     Ok(acc + 1)
                 }
             };
-            let or_else = |e| Ok::<i32, i32>(e);
+            let or_else = Ok::<i32, i32>;
 
             let scenic_left = (0..col)
                 .rev()

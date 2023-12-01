@@ -63,10 +63,8 @@ pub fn day12_part2(input: &str) -> Solution {
                 return vec![];
             }
             interesting_visited = true;
-        } else {
-            if node.is_small && !already_visited.insert(node.val) {
-                return vec![];
-            }
+        } else if node.is_small && !already_visited.insert(node.val) {
+            return vec![];
         }
 
         let mut to_visit = vec![];
@@ -76,7 +74,7 @@ pub fn day12_part2(input: &str) -> Solution {
 
         to_visit
             .iter()
-            .map(|node| {
+            .flat_map(|node| {
                 visit_node(
                     nodes,
                     already_visited.clone(),
@@ -86,7 +84,6 @@ pub fn day12_part2(input: &str) -> Solution {
                     path.clone(),
                 )
             })
-            .flatten()
             .collect()
     }
 

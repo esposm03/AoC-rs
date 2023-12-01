@@ -60,8 +60,8 @@ pub fn day4_part2(input: &str) -> Solution {
                     "hgt" => {
                         if val.len() != 2 {
                             let num = val[..val.len() - 2].parse::<u16>().unwrap();
-                            if val.ends_with("cm") && 150 <= num && num <= 193
-                                || val.ends_with("in") && 59 <= num && num <= 76
+                            if val.ends_with("cm") && (150..=193).contains(&num)
+                                || val.ends_with("in") && (59..=76).contains(&num)
                             {
                                 res += 8
                             }

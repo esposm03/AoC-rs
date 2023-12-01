@@ -193,7 +193,7 @@ impl Visualization {
         Visualization {
             process: enabled.then(|| {
                 Command::new("ffmpeg")
-                    .args(&args)
+                    .args(args)
                     .stderr(Stdio::null())
                     .stdout(Stdio::piped())
                     .stdin(Stdio::piped())
@@ -206,11 +206,7 @@ impl Visualization {
     }
 
     pub fn draw<D, F: Fn(&mut Visualization, D)>(&mut self, func: F, data: D) {
-        let stdin = self
-            .process
-            .as_mut()
-            .map(|proc| proc.stdin.take())
-            .flatten();
+        let stdin = self.process.as_mut().and_then(|proc| proc.stdin.take());
 
         if let Some(mut stdin) = stdin {
             self.frame.fill(0);
@@ -229,7 +225,7 @@ impl Visualization {
                 let x = self.scale as usize * x + xs as usize;
                 let y = self.scale as usize * y + ys as usize;
 
-                self.frame[y * 1280 * 3 + x * 3 + 0] = r;
+                self.frame[y * 1280 * 3 + x * 3] = r;
                 self.frame[y * 1280 * 3 + x * 3 + 1] = g;
                 self.frame[y * 1280 * 3 + x * 3 + 2] = b;
             }
@@ -238,7 +234,7 @@ impl Visualization {
 
     pub fn close(self) {
         if let Some(mut proc) = self.process {
-            drop(proc.stdin.as_mut().unwrap());
+            let _ = proc.stdin.as_mut().unwrap();
             println!("ffmpeg exit status: {}", proc.wait().unwrap());
         }
     }

@@ -7,7 +7,7 @@ use crate::Solution;
 
 fn day13_part(input: &str, num_steps: usize) -> HashSet<(u32, u32)> {
     let input = input.lines().map(|line| line.trim()).collect::<Vec<_>>();
-    let mut iter = input.split(|line| *line == "");
+    let mut iter = input.split(|line| line.is_empty());
     let dots_input = iter.next().unwrap();
     let folds = iter.next().unwrap();
 
@@ -26,7 +26,7 @@ fn day13_part(input: &str, num_steps: usize) -> HashSet<(u32, u32)> {
 
         for (x, y) in std::mem::take(&mut dots) {
             assert!(!(along_x && coord == x), "Fold on line containing dots");
-            assert!(!(!along_x && coord == y), "Fold on line containing dots");
+            assert!(along_x || coord != y, "Fold on line containing dots");
 
             let (x, y) = match (along_x, if along_x { x } else { y }.cmp(&coord)) {
                 (true, Ordering::Greater) => (x - 2 * x.abs_diff(coord), y),

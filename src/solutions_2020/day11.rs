@@ -105,8 +105,7 @@ impl Map {
 
         self.map
             .get(x as usize)
-            .map(|i| i.get(y as usize))
-            .flatten()
+            .and_then(|i| i.get(y as usize))
             .copied()
     }
 

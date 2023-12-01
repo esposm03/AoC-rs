@@ -43,14 +43,8 @@ fn part1(input: &str, line: i32) -> i64 {
             .copied()
             .any(|(bx, by, d)| manhattan_dist((bx, by), (x, line)) <= d);
 
-        let is_beacon = beacons
-            .iter()
-            .find(|(bx, by)| *bx == x && *by == line)
-            .is_some();
-        let is_sensor = sensors
-            .iter()
-            .find(|(bx, by, _)| *bx == x && *by == line)
-            .is_some();
+        let is_beacon = beacons.iter().any(|(bx, by)| *bx == x && *by == line);
+        let is_sensor = sensors.iter().any(|(bx, by, _)| *bx == x && *by == line);
 
         if occupied && !is_beacon && !is_sensor {
             count += 1;

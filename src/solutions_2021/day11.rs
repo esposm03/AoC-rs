@@ -6,14 +6,12 @@ pub fn day11(input: &str) -> Solution {
 
 fn day11_part1(input: &str, n_steps: usize) -> Solution {
     let mut mat = Matrix::new();
-    let mut row = 0;
 
-    for line in input.lines() {
+    for (row, line) in input.lines().enumerate() {
         for (col, octopus) in line.trim().char_indices() {
             let octopus = octopus.to_digit(10).unwrap();
             mat.set(col, row, octopus);
         }
-        row += 1;
     }
 
     let mut total_flashed = 0;
@@ -33,7 +31,7 @@ fn day11_part1(input: &str, n_steps: usize) -> Solution {
             }
         }
         while let Some((col, row)) = to_check.pop() {
-            if col < 0 || col > 9 || row < 0 || row > 9 {
+            if !(0..=9).contains(&col) || !(0..=9).contains(&row) {
                 continue;
             }
 
@@ -77,14 +75,12 @@ fn day11_part1(input: &str, n_steps: usize) -> Solution {
 
 pub fn day11_part2(input: &str) -> Solution {
     let mut mat = Matrix::new();
-    let mut row = 0;
 
-    for line in input.lines() {
+    for (row, line) in input.lines().enumerate() {
         for (col, octopus) in line.trim().char_indices() {
             let octopus = octopus.to_digit(10).unwrap();
             mat.set(col, row, octopus);
         }
-        row += 1;
     }
 
     let mut step = 0;
@@ -106,7 +102,7 @@ pub fn day11_part2(input: &str) -> Solution {
             }
         }
         while let Some((col, row)) = to_check.pop() {
-            if col < 0 || col > 9 || row < 0 || row > 9 {
+            if !(0..=9).contains(&col) || !(0..=9).contains(&row) {
                 continue;
             }
 

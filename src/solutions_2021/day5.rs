@@ -14,14 +14,10 @@ pub fn day5(input: &str) -> Solution {
         let mut row2 = iter.next().unwrap();
 
         if row1 > row2 {
-            let temp = row1;
-            row1 = row2;
-            row2 = temp;
+            std::mem::swap(&mut row1, &mut row2);
         }
         if col1 > col2 {
-            let temp = col1;
-            col1 = col2;
-            col2 = temp;
+            std::mem::swap(&mut col1, &mut col2);
         }
 
         if col1 == col2 {
@@ -73,14 +69,10 @@ pub fn day5_part2(input: &str) -> Solution {
         }
 
         if row1 > row2 {
-            let temp = row1;
-            row1 = row2;
-            row2 = temp;
+            std::mem::swap(&mut row1, &mut row2);
         }
         if col1 > col2 {
-            let temp = col1;
-            col1 = col2;
-            col2 = temp;
+            std::mem::swap(&mut col1, &mut col2);
         }
 
         if col1 == col2 {

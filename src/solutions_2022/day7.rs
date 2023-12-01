@@ -26,8 +26,8 @@ pub fn day7(input: &str) -> Solution {
     for line in input.trim().lines() {
         let line = line.trim();
 
-        if line.starts_with("$ cd ") {
-            state.change_dir(&line[5..]);
+        if let Some(dir) = line.strip_prefix("$ cd ") {
+            state.change_dir(dir);
         } else if !line.starts_with('$') {
             let size = line.split(' ').next().unwrap();
             let name = line.split(' ').nth(1).unwrap();
@@ -76,8 +76,8 @@ pub fn day7_part2(input: &str) -> Solution {
     for line in input.trim().lines() {
         let line = line.trim();
 
-        if line.starts_with("$ cd ") {
-            state.change_dir(&line[5..]);
+        if let Some(dir) = line.strip_prefix("$ cd ") {
+            state.change_dir(dir);
         } else if !line.starts_with('$') {
             let size = line.split(' ').next().unwrap();
             let name = line.split(' ').nth(1).unwrap();
