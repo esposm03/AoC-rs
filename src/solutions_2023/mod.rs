@@ -5,6 +5,7 @@ declare_solutions!();
 mod day1;
 
 pub use day1::day1;
+pub use day1::day1_part2;
 
 pub fn day2(_: &str) -> Solution {
     unimplemented!()
@@ -76,9 +77,6 @@ pub fn day24(_: &str) -> Solution {
     unimplemented!()
 }
 pub fn day25(_: &str) -> Solution {
-    unimplemented!()
-}
-pub fn day1_part2(_: &str) -> Solution {
     unimplemented!()
 }
 pub fn day2_part2(_: &str) -> Solution {
