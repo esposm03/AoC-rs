@@ -12,6 +12,7 @@ mod solutions_2019;
 mod solutions_2020;
 mod solutions_2021;
 mod solutions_2022;
+mod solutions_2023;
 
 #[derive(Parser)]
 #[clap(
@@ -19,8 +20,8 @@ mod solutions_2022;
     author = "esposm03 <36164633+esposm03@users.noreply.github.com>"
 )]
 struct Invocation {
-    /// The AoC year (default: 2022)
-    #[clap(short, long, default_value = "2022")]
+    /// The AoC year (default: 2023)
+    #[clap(short, long, default_value = "2023")]
     year: usize,
     /// Whether to generate visualizations using ffmpeg
     #[arg(long)]
@@ -155,6 +156,7 @@ fn main() {
             2020 => solutions_2020::SOLUTIONS[number](&input),
             2021 => solutions_2021::SOLUTIONS[number](&input),
             2022 => solutions_2022::SOLUTIONS[number](&input),
+            2023 => solutions_2023::SOLUTIONS[number](&input),
             _ => "Invalid year :(".into(),
         }
     );
