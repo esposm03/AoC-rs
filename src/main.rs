@@ -14,6 +14,94 @@ mod solutions_2021;
 mod solutions_2022;
 mod solutions_2023;
 
+pub struct Array2D<T: Clone + core::fmt::Debug> {
+    inner: Vec<Vec<Option<T>>>,
+    x: usize,
+    y: usize,
+}
+impl<T: Clone + core::fmt::Debug + PartialEq> Array2D<T> {
+    /// Create a new [`Array2D`] and fill it with `elem`
+    pub fn splat(elem: T, x: usize, y: usize) -> Self {
+        Self {
+            inner: vec![vec![Some(elem); y]; x],
+            x,
+            y,
+        }
+    }
+
+    /// Create a new, empty, [`Array2D`]
+    pub fn new(x: usize, y: usize) -> Self {
+        Self {
+            inner: vec![vec![None; y]; x],
+            x,
+            y,
+        }
+    }
+
+    /// Returns the number of columns in this [`Array2D`]
+    pub fn x(&self) -> usize {
+        self.x
+    }
+
+    /// Returns the number of rows in this [`Array2D`]
+    pub fn y(&self) -> usize {
+        self.y
+    }
+
+    /// Sets an element at position `(x, y)`
+    pub fn set(&mut self, x: usize, y: usize, elem: T) {
+        self.inner[x][y] = Some(elem);
+    }
+
+    /// Return a list of all positions of elements equal to `elem`
+    pub fn positions(&self, elem: T) -> Vec<(usize, usize)> {
+        let mut res = vec![];
+
+        for x in 0..self.x() {
+            for y in 0..self.y() {
+                if self.inner[x][y]
+                    .as_ref()
+                    .expect("called `Array2D::positions` even though it's not completely full")
+                    == &elem
+                {
+                    res.push((x, y));
+                }
+            }
+        }
+
+        res
+    }
+}
+impl<T: Clone + core::fmt::Debug> std::ops::Index<(usize, usize)> for Array2D<T> {
+    type Output = T;
+
+    fn index(&self, index: (usize, usize)) -> &Self::Output {
+        self.inner[index.0][index.1].as_ref().unwrap()
+    }
+}
+impl<T: Clone + core::fmt::Debug> std::ops::IndexMut<(usize, usize)> for Array2D<T> {
+    fn index_mut(&mut self, index: (usize, usize)) -> &mut Self::Output {
+        self.inner[index.0][index.1].as_mut().unwrap()
+    }
+}
+impl Array2D<char> {
+    pub fn from_map(input: &str) -> Self {
+        let input = input.trim();
+        let mut chars = Array2D::<char>::new(
+            input.lines().next().unwrap().trim().len(),
+            input.lines().count(),
+        );
+
+        for (y, line) in input.lines().enumerate() {
+            for (x, ch) in line.trim().char_indices() {
+                chars.set(x, y, ch);
+            }
+        }
+
+        chars
+    }
+}
+
 #[derive(Parser)]
 #[clap(
     version = "2021",
