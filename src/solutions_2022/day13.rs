@@ -19,8 +19,6 @@ pub fn day13(input: &str) -> Solution {
         let (_, a) = parse_packet(packet_a).unwrap();
         let (_, b) = parse_packet(packet_b).unwrap();
 
-        // println!("{packet_a}\n{packet_b}\n{:?}\n", cmp(&a, &b));
-
         if cmp(&a, &b) == Ordering::Less {
             sum += i + 1;
         }

@@ -261,7 +261,6 @@ fn test() {
     assert_eq!(part2_vis1.get(3, 4), Some(Empty));
     assert_eq!(part2_vis1.count_near_seats(3, 4, false), 8);
 
-    eprintln!("\n\n");
     let part2_vis2 = Map::parse(
         ".............
         .L.L.#.#.#.#.

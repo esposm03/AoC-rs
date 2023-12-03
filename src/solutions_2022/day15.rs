@@ -27,7 +27,6 @@ fn part1(input: &str, line: i32) -> i64 {
         let by = parse(9);
         let dist = manhattan_dist((sx, sy), (bx, by));
 
-        println!("Beacon at {bx} {by}");
         sensors.push((sx, sy, dist));
         beacons.push((bx, by));
         min_x = min(min_x, sx - dist as i32);
@@ -50,7 +49,6 @@ fn part1(input: &str, line: i32) -> i64 {
             count += 1;
         }
     }
-    println!();
 
     count
 }
