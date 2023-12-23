@@ -3,8 +3,9 @@
 
 use clap::Parser;
 use std::{
-    fmt::Display,
+    fmt::{Debug, Display},
     io::{self, Read, Write},
+    ops::{Index, IndexMut},
     process::{Child, Command, Stdio},
 };
 
@@ -14,12 +15,12 @@ mod solutions_2021;
 mod solutions_2022;
 mod solutions_2023;
 
-pub struct Array2D<T: Clone + core::fmt::Debug> {
+pub struct Array2D<T: Clone + Debug> {
     inner: Vec<Vec<Option<T>>>,
     x: usize,
     y: usize,
 }
-impl<T: Clone + core::fmt::Debug + PartialEq> Array2D<T> {
+impl<T: Clone + Debug + PartialEq> Array2D<T> {
     /// Create a new [`Array2D`] and fill it with `elem`
     pub fn splat(elem: T, x: usize, y: usize) -> Self {
         Self {
@@ -72,14 +73,14 @@ impl<T: Clone + core::fmt::Debug + PartialEq> Array2D<T> {
         res
     }
 }
-impl<T: Clone + core::fmt::Debug> std::ops::Index<(usize, usize)> for Array2D<T> {
+impl<T: Clone + Debug> Index<(usize, usize)> for Array2D<T> {
     type Output = T;
 
     fn index(&self, index: (usize, usize)) -> &Self::Output {
         self.inner[index.0][index.1].as_ref().unwrap()
     }
 }
-impl<T: Clone + core::fmt::Debug> std::ops::IndexMut<(usize, usize)> for Array2D<T> {
+impl<T: Clone + Debug> IndexMut<(usize, usize)> for Array2D<T> {
     fn index_mut(&mut self, index: (usize, usize)) -> &mut Self::Output {
         self.inner[index.0][index.1].as_mut().unwrap()
     }
@@ -254,7 +255,7 @@ static mut VISUALIZATION_ENABLED: bool = false;
 
 struct Visualization {
     process: Option<Child>,
-    frame: Box<[u8; 1280 * 720 * 3]>,
+    frame: Box<[u8]>,
     scale: u8,
 }
 impl Visualization {
@@ -290,7 +291,7 @@ impl Visualization {
                     .spawn()
                     .expect("Failed to start ffmpeg")
             }),
-            frame: Box::new([0; 1280 * 720 * 3]),
+            frame: vec![0; 1280 * 720 * 3].into_boxed_slice(),
             scale,
         }
     }
@@ -303,7 +304,7 @@ impl Visualization {
 
             func(self, data);
 
-            stdin.write_all(&*self.frame).unwrap();
+            stdin.write_all(&self.frame).unwrap();
 
             self.process.as_mut().unwrap().stdin = Some(stdin);
         }

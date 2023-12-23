@@ -3,6 +3,7 @@ use crate::{declare_solutions, Solution};
 declare_solutions!();
 
 mod day1;
+mod day18;
 mod day2;
 mod day3;
 mod day4;
@@ -10,6 +11,7 @@ mod day5;
 
 pub use day1::day1;
 pub use day1::day1_part2;
+pub use day18::day18;
 pub use day2::day2;
 pub use day2::day2_part2;
 pub use day3::day3;
@@ -53,9 +55,6 @@ pub fn day16(_: &str) -> Solution {
     unimplemented!()
 }
 pub fn day17(_: &str) -> Solution {
-    unimplemented!()
-}
-pub fn day18(_: &str) -> Solution {
     unimplemented!()
 }
 pub fn day19(_: &str) -> Solution {
